@@ -1,18 +1,189 @@
 .program-page {
-  padding: 0;
+  padding: 20px 0 0 0;
+}
+
+.program-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .program-page h1 {
   font-size: 24px;
   color: #333;
+  font-weight: 500;
+  padding-left: 5px;
+  margin: 0;
+}
+
+.pagination {
+  display: flex;
+  gap: 5px;
+}
+
+.page-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+}
+
+.page-btn.active {
+  background-color: #5d6af8;
+  color: white;
+}
+
+.next-btn {
+  font-size: 18px;
+}
+
+/* 테이블 스타일 */
+.treatment-table {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.table-header {
+  display: flex;
+  background-color: #f9f9f9;
+  padding: 12px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.table-row {
+  display: flex;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.col {
+  display: flex;
+  align-items: center;
+}
+
+.date-col {
+  width: 15%;
+  color: #666;
+}
+
+.treatment-col {
+  width: 65%;
+  color: #333;
+}
+
+.status-col {
+  width: 20%;
+  justify-content: flex-end;
+}
+
+.status-badge {
+  padding: 5px 20px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: lowercase;
+}
+
+.status-badge.good {
+  background-color: #e8f5e9;
+  color: #4caf50;
+  border: 1px solid #c8e6c9;
+}
+
+.status-badge.bad {
+  background-color: #ffebee;
+  color: #ef5350;
+  border: 1px solid #ffcdd2;
+}
+
+/* 차트 스타일 */
+.performance-chart {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
+}
+
+.performance-chart h2 {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
   font-weight: 500;
 }
 
-.program-content {
-  background-color: white;
-  border-radius: 8px;
-  padding: 25px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  min-height: 200px;
-} 
+.chart-legend {
+  display: flex;
+  gap: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  color: #666;
+}
+
+.legend-color {
+  width: 30px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.legend-color.average {
+  background-color: #e9c46a;
+}
+
+.legend-color.patient {
+  background-color: #4a57e5;
+}
+
+.chart-wrapper {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.chart-x-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 0 10px;
+  overflow-x: auto;
+}
+
+.x-label {
+  font-size: 10px;
+  color: #999;
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+  padding: 0 3px;
+}
