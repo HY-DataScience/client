@@ -1,0 +1,129 @@
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  height: 100vh;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 5px;
+}
+
+.logo:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: #666;
+  margin-left: 35px;
+}
+
+.menu-header {
+  font-size: 15px;
+  color: #999;
+  margin: 15px 0;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  margin-right: 15px;
+  display: inline-block;
+  position: relative;
+}
+
+/* 모든 아이콘 공통 스타일 - 원형 배경 */
+.icon::before {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+}
+
+.menu-list li a,
+.menu-list li Link {
+  text-decoration: none;
+  color: #666;
+  font-size: 14px;
+  white-space: nowrap;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+}
+
+/* 각 아이콘별 특수 스타일 */
+.user-icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23aaa"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.history-icon::after,
+.diagnosis-icon::after,
+.note-icon::after,
+.medical-history-icon::after,
+.treatment-icon::after,
+.recommendation-icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background-color: #ccc;
+  border-radius: 50%;
+} 

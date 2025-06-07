@@ -1,0 +1,18 @@
+.diagnosis-page {
+  padding: 0;
+}
+
+.diagnosis-page h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.diagnosis-content {
+  background-color: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  min-height: 200px;
+}
