@@ -18,11 +18,12 @@ const Info = () => {
 
   const handleSurveyImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
       const reader = new FileReader();
       reader.onload = (e) => {
         setSurveyImage(e.target.result);
       };
-      reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(file);
     }
   };
 
@@ -160,7 +161,7 @@ const Info = () => {
             </div>
             <label className="upload-document-btn">
               <span>설문조사 이미지 업로드</span>
-              <input type="file" accept="image/*" onChange={handleSurveyImageChange} style={{ display: 'none' }} />
+              <input type="file" accept="image/*,application/pdf" onChange={handleSurveyImageChange} style={{ display: 'none' }} />
             </label>
           </div>
           
