@@ -6,6 +6,7 @@ const Info = () => {
   const [surveyImage, setSurveyImage] = useState(null);
   const [surveyFileType, setSurveyFileType] = useState(null);
   const [examImages, setExamImages] = useState([]);
+  const [saveMessage, setSaveMessage] = useState(null);
 
   const handlePhotoChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -47,6 +48,20 @@ const Info = () => {
         reader.readAsDataURL(file);
       });
     }
+  };
+
+  const handleSavePatient = () => {
+    // 여기서 실제 저장 로직이 구현될 수 있습니다
+    // 지금은 단순히 메시지만 표시합니다
+    setSaveMessage({
+      show: true,
+      message: '환자 정보가 ID 1001번으로 저장되었습니다.'
+    });
+    
+    // 3초 후 메시지 숨기기
+    setTimeout(() => {
+      setSaveMessage(null);
+    }, 3000);
   };
 
   return (
@@ -147,10 +162,19 @@ const Info = () => {
           </div>
 
           <div className="form-actions">
-            <button className="save-btn">저장</button>
+            <button className="save-btn" onClick={handleSavePatient}>저장</button>
           </div>
         </div>
       </div>
+      
+      {/* 저장 알림 메시지 */}
+      {saveMessage && saveMessage.show && (
+        <div className="save-message">
+          <div className="save-message-content">
+            <span>✅ {saveMessage.message}</span>
+          </div>
+        </div>
+      )}
       
       <div className="document-section">
         <h2>문서 자료</h2>

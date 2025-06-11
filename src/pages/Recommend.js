@@ -14,8 +14,8 @@ const Recommend = () => {
     ageGroup: '20대',
     gender: '여성',
     diagnosis: '요추 디스크 탈출증',
-    painAreas: '허리, 엉덩이, 다리(허벅지)',
-    period: '2개월',
+    painAreas: '목, 등, 허리, 골반',
+    period: '1개월 이상',
     // 추가 측정 데이터
     trunk_lean_back: 3,
     trunk_side_lean_right: 5,
