@@ -83,6 +83,8 @@ const Diagnosis = () => {
     "복부지방율(32.5 %)이 정상 상한(28 %)을 초과하여 과다 소견입니다.",
     "골격근량(24.3 kg)은 참조치 하한(18 kg)을 상회해 양호합니다.",
     "총 근육량(38.9 kg)은 참조치 하한(30 kg)에 근접하니 다소 낮은 수준입니다.",
+    "Lookinbody 검사 결과 민첩성이 0.48로 표준 이하로 나타나 전반적인 움직임 기능 저하가 의심됩니다.",
+    "Imoove 검사 결과 역시 강도 1, 민감도 2로 나타나 활동량 부족 및 근력 약화가 복합적으로 작용한 것으로 판단됩니다.",
     "이에 복부비만 관리 프로그램 및 근력강화 재활 프로그램 참여를 권장드립니다."
   ];
 
@@ -103,7 +105,35 @@ const Diagnosis = () => {
                 {index === 0 ? (
                   <p>{item}</p>
                 ) : index === diagnosisItems.length - 1 ? (
-                  <p>{item}</p>
+                  <div className="diagnosis-item-with-buttons">
+                    <li>{item}</li>
+                    <div className="copy-buttons">
+                      <button 
+                        onClick={() => handleItemClick(item, 'doctorNote', index)}
+                        className={clickedItem && clickedItem.index === index && clickedItem.fieldType === 'doctorNote' ? 'active' : ''}
+                      >
+                        소견
+                      </button>
+                      <button 
+                        onClick={() => handleItemClick(item, 'recommendedProgram', index)}
+                        className={clickedItem && clickedItem.index === index && clickedItem.fieldType === 'recommendedProgram' ? 'active' : ''}
+                      >
+                        추천
+                      </button>
+                      <button 
+                        onClick={() => handleItemClick(item, 'precautions', index)}
+                        className={clickedItem && clickedItem.index === index && clickedItem.fieldType === 'precautions' ? 'active' : ''}
+                      >
+                        주의
+                      </button>
+                      <button 
+                        onClick={() => handleItemClick(item, 'privateNote', index)}
+                        className={clickedItem && clickedItem.index === index && clickedItem.fieldType === 'privateNote' ? 'active' : ''}
+                      >
+                        메모
+                      </button>
+                    </div>
+                  </div>
                 ) : (
                   <div className="diagnosis-item-with-buttons">
                     <li>{item}</li>
