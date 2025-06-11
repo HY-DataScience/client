@@ -23,7 +23,7 @@ const DataList = () => {
     {
       id: 'inbody',
       title: '인바디 결과(특이사항)',
-      summary: '근육항 적절치나 체지방 불균형이 다소 높게 관찰됩니다.',
+      summary: '근육량은 적절하나 체지방 불균형이 다소 높게 관찰됩니다.',
       images: [
         {
           url: '/images/inbody-composition.png',
@@ -38,7 +38,7 @@ const DataList = () => {
     {
       id: 'exboby',
       title: '보행분석 결과(특이사항)',
-      summary: '근육항 적절치나 체지방 불균형이 다소 높게 관찰됩니다.',
+      summary: '보행 패턴은 전반적으로 안정적이나 하체 근력 및 균형 능력 개선이 일부 요구됩니다.',
       images: [
         {
           url: '/images/exboby-example.png',
@@ -49,7 +49,7 @@ const DataList = () => {
     {
       id: 'lookInbody',
       title: 'lookInbody 결과(특이사항)',
-      summary: '근육항 적절치나 체지방 불균형이 다소 높게 관찰됩니다.',
+      summary: '체성분은 대체로 적절하나 체지방률 및 수분 균형에 일부 조정이 필요합니다.',
       images: [
         {
           url: '/images/lookinbody-example.png',
@@ -60,7 +60,7 @@ const DataList = () => {
     {
       id: 'Imoove',
       title: 'Imoove 결과(특이사항)',
-      summary: '근육항 적절치나 체지방 불균형이 다소 높게 관찰됩니다.',
+      summary: '안정성 및 코어 근기능은 양호하나 좌우 근긴장도 균형 개선이 권장됩니다.',
       images: [
         {
           url: '/images/imoove-both-feet.png',
