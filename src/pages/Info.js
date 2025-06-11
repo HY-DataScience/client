@@ -4,7 +4,8 @@ import './Info.css';
 const Info = () => {
   const [patientPhoto, setPatientPhoto] = useState(null);
   const [surveyImage, setSurveyImage] = useState(null);
-  const [examImage, setExamImage] = useState(null);
+  const [surveyFileType, setSurveyFileType] = useState(null);
+  const [examImages, setExamImages] = useState([]);
 
   const handlePhotoChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -19,6 +20,9 @@ const Info = () => {
   const handleSurveyImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
+      const fileType = file.type;
+      setSurveyFileType(fileType);
+      
       const reader = new FileReader();
       reader.onload = (e) => {
         setSurveyImage(e.target.result);
@@ -28,12 +32,20 @@ const Info = () => {
   };
 
   const handleExamImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setExamImage(e.target.result);
-      };
-      reader.readAsDataURL(e.target.files[0]);
+    if (e.target.files && e.target.files.length > 0) {
+      const newImages = [];
+      const fileCount = e.target.files.length;
+      
+      Array.from(e.target.files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          newImages.push(event.target.result);
+          if (newImages.length === fileCount) {
+            setExamImages(prevImages => [...prevImages, ...newImages]);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
     }
   };
 
@@ -149,8 +161,25 @@ const Info = () => {
             <div className="document-preview">
               {surveyImage ? (
                 <div className="document-image-preview">
-                  <img src={surveyImage} alt="설문조사 이미지" />
-                  <span className="document-name">설문조사</span>
+                  {surveyFileType && surveyFileType === 'application/pdf' ? (
+                    <div className="pdf-preview">
+                      <div className="pdf-icon">📄 PDF 문서</div>
+                      <span className="document-name">설문조사</span>
+                      <a 
+                        href={surveyImage} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="view-pdf-btn"
+                      >
+                        PDF 보기
+                      </a>
+                    </div>
+                  ) : (
+                    <>
+                      <img src={surveyImage} alt="설문조사 이미지" />
+                      <span className="document-name">설문조사</span>
+                    </>
+                  )}
                 </div>
               ) : (
                 <div className="empty-document">
@@ -168,10 +197,14 @@ const Info = () => {
           <div className="document-upload">
             <h3>검사지 이미지</h3>
             <div className="document-preview">
-              {examImage ? (
-                <div className="document-image-preview">
-                  <img src={examImage} alt="검사지 이미지" />
-                  <span className="document-name">검사지</span>
+              {examImages.length > 0 ? (
+                <div className="document-images-container">
+                  {examImages.map((image, index) => (
+                    <div key={index} className="document-image-preview">
+                      <img src={image} alt={`검사지 이미지 ${index + 1}`} />
+                      <span className="document-name">검사지 {index + 1}</span>
+                    </div>
+                  ))}
                 </div>
               ) : (
                 <div className="empty-document">
@@ -182,7 +215,13 @@ const Info = () => {
             </div>
             <label className="upload-document-btn">
               <span>검사지 이미지 업로드</span>
-              <input type="file" accept="image/*" onChange={handleExamImageChange} style={{ display: 'none' }} />
+              <input 
+                type="file" 
+                accept="image/*" 
+                onChange={handleExamImageChange} 
+                style={{ display: 'none' }} 
+                multiple 
+              />
             </label>
           </div>
         </div>
