@@ -100,8 +100,8 @@ const Recommend = () => {
       ]
     },
     {
-      id: 'A102',
-      age: '52세',
+      id: '102',
+      age: '32세',
       similarity: '65.5%',
       measurements: {
         trunk_lean_back: 4,
@@ -111,7 +111,7 @@ const Recommend = () => {
       },
       treatments: [
         {
-          program: '도수치료 + 일일 견기',
+          program: 'stability',
           duration: '3.8개월',
           changes: [
             { 
@@ -125,8 +125,8 @@ const Recommend = () => {
       ]
     },
     {
-      id: 'B217',
-      age: '55세',
+      id: '217',
+      age: '35세',
       similarity: '62.1%',
       measurements: {
         trunk_lean_back: 2,
@@ -136,7 +136,7 @@ const Recommend = () => {
       },
       treatments: [
         {
-          program: '복부 강화 루틴 + 체중 관리',
+          program: 'core',
           duration: '4.5개월',
           changes: [
             { 
@@ -251,7 +251,7 @@ const Recommend = () => {
                     <span className="info-value">{patientData.trunk_side_lean_right}</span>
                   </div>
                   <div className="info-item">
-                    <span className="info-label">runk_stability</span>
+                    <span className="info-label">trunk_stability</span>
                     <span className="info-value">{patientData.trunk_stability}</span>
                   </div>
                   <div className="info-item">
@@ -294,29 +294,57 @@ const Recommend = () => {
                       </div>
                     </div>
                     
-                    {patient.treatments.map((treatment, idx) => (
-                      <div className="treatment-section" key={idx}>
+                    {patient.id === '102' || patient.id === '217' ? (
+                      <div className="treatment-section">
                         <div className="treatment-info">
-                          <div className="treatment-program">
+                          <p>
                             <span className="treatment-label">치료 프로그램:</span>
-                            <span className="treatment-value">{treatment.program}</span>
-                          </div>
-                          <div className="treatment-duration">
-                            <span className="treatment-label">치료 기간:</span>
-                            <span className="treatment-value">{treatment.duration}</span>
-                          </div>
+                            <span className="treatment-value">{patient.treatments[0].program}</span>
+                            <span className="treatment-label" style={{marginLeft: '15px'}}>치료 기간:</span>
+                            <span className="treatment-value">{patient.treatments[0].duration}</span>
+                          </p>
                         </div>
                         
-                        {treatment.changes.length > 0 && (
-                          <div className="changes-section">
-                            <span className="changes-label">변화 지표:</span>
-                            <div className="changes-list">
-                              {renderChanges(treatment.changes)}
+                        <div className="changes-section">
+                          <span className="changes-label">변화 지표:</span>
+                          <div className="changes-list">
+                            {patient.treatments[0].changes.map((change, idx) => (
+                              <div className="change-item" key={idx}>
+                                <span className="metric">{change.metric}:</span> 
+                                <span className="values">{change.before} → {change.after}</span>
+                                <span className={`diff ${change.diff.includes('+') ? 'positive' : 'negative'}`}>
+                                  ({change.diff})
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      patient.treatments.map((treatment, idx) => (
+                        <div className="treatment-section" key={idx}>
+                          <div className="treatment-info">
+                            <div className="treatment-program">
+                              <span className="treatment-label">치료 프로그램:</span>
+                              <span className="treatment-value">{treatment.program}</span>
+                            </div>
+                            <div className="treatment-duration">
+                              <span className="treatment-label">치료 기간:</span>
+                              <span className="treatment-value">{treatment.duration}</span>
                             </div>
                           </div>
-                        )}
-                      </div>
-                    ))}
+                          
+                          {treatment.changes.length > 0 && (
+                            <div className="changes-section">
+                              <span className="changes-label">변화 지표:</span>
+                              <div className="changes-list">
+                                {renderChanges(treatment.changes)}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))
+                    )}
                   </div>
                 ))}
               </div>
