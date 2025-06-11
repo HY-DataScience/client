@@ -3,12 +3,34 @@ import './Info.css';
 
 const Info = () => {
   const [patientPhoto, setPatientPhoto] = useState(null);
+  const [surveyImage, setSurveyImage] = useState(null);
+  const [examImage, setExamImage] = useState(null);
 
   const handlePhotoChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e) => {
         setPatientPhoto(e.target.result);
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  const handleSurveyImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setSurveyImage(e.target.result);
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  const handleExamImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setExamImage(e.target.result);
       };
       reader.readAsDataURL(e.target.files[0]);
     }
@@ -113,6 +135,54 @@ const Info = () => {
 
           <div className="form-actions">
             <button className="save-btn">저장</button>
+          </div>
+        </div>
+      </div>
+      
+      <div className="document-section">
+        <h2>문서 자료</h2>
+        
+        <div className="documents-container">
+          <div className="document-upload">
+            <h3>설문조사 이미지</h3>
+            <div className="document-preview">
+              {surveyImage ? (
+                <div className="document-image-preview">
+                  <img src={surveyImage} alt="설문조사 이미지" />
+                  <span className="document-name">설문조사</span>
+                </div>
+              ) : (
+                <div className="empty-document">
+                  <span className="document-icon">📄</span>
+                  <span>이미지 없음</span>
+                </div>
+              )}
+            </div>
+            <label className="upload-document-btn">
+              <span>설문조사 이미지 업로드</span>
+              <input type="file" accept="image/*" onChange={handleSurveyImageChange} style={{ display: 'none' }} />
+            </label>
+          </div>
+          
+          <div className="document-upload">
+            <h3>검사지 이미지</h3>
+            <div className="document-preview">
+              {examImage ? (
+                <div className="document-image-preview">
+                  <img src={examImage} alt="검사지 이미지" />
+                  <span className="document-name">검사지</span>
+                </div>
+              ) : (
+                <div className="empty-document">
+                  <span className="document-icon">📋</span>
+                  <span>이미지 없음</span>
+                </div>
+              )}
+            </div>
+            <label className="upload-document-btn">
+              <span>검사지 이미지 업로드</span>
+              <input type="file" accept="image/*" onChange={handleExamImageChange} style={{ display: 'none' }} />
+            </label>
           </div>
         </div>
       </div>
